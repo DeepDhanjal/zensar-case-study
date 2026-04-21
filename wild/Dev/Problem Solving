@@ -1,0 +1,37 @@
+Question 4:Dev/Problem Solving
+Solution:
+1. Create a New Backstage Instance
+	npx @backstage/create-app@latest
+
+2. Create the Custom Action
+	packages/backend/src/actions/myCustomAction.ts
+
+export const createMyCustomAction = () => {		//This exports a factory function
+  return createTemplateAction<{ fileName: string; content: string }>({		//This is a helper function from the Backstage Scaffolder
+    id: 'my:custom:action',		//This is the unique identifier
+    schema: {
+      input: {
+        type: 'object',
+        properties: {
+          fileName: { type: 'string', title: 'File Name' },
+          content: { type: 'string', title: 'File Content' },
+
+3. Add to Example Template
+
+  parameters:
+    - title: File Details	//The header shown at the top of the form page.
+      properties:
+        name:
+          title: Name of the file
+          type: string
+        text:
+          title: Content
+          type: string
+
+  steps:
+    - id: create-file		//A unique identifier for this specific step
+      name: Create a file in the workspace
+      action: my:custom:action	//It must match the id you defined in your typeScript code. It tells Backstage to run your custom logic.
+      input:
+        fileName: ${{ parameters.name }}	//Uses "Template Syntax" to grab the file name the user typed in the form and pass it to your code.
+        content: ${{ parameters.text }}		//Grabs the content text from the form.
