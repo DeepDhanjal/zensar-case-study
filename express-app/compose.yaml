@@ -1,1 +1,13 @@
-# Add code here
+The docker-compose.yml File
+
+version: '3.8'
+
+services:
+  web-app:
+    build: .	// It tells the Compose to look for Dockerfile in the current directory.
+    ports:	//Connecting Host Port with the Container Port.
+      - "4567:4567"
+    environment:
+      - NODE_ENV=development
+    volumes:
+      - .:/usr/src/app //sync local folder with the container. 
