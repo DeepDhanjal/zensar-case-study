@@ -1,4 +1,4 @@
-Question 1:Scripting
+Question 1: Scripting
 Solution: Python Script:
       
        if 'delete' in action:		//Block any 'delete' 
