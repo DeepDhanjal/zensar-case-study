@@ -1,4 +1,4 @@
-Question 2:Infrastructure As Code
+Question 2: Infrastructure As Code
 Solution:
 Step 1: Remove the resource from State
 	terraform state rm 'aws_ec2_instance.name[1]' //Assume "2nd" resource as index 1
